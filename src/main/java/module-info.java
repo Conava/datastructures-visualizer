@@ -1,4 +1,4 @@
-module org.conava.datastructuresvisualizer {
+module org.conava.dsv {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -11,6 +11,8 @@ module org.conava.datastructuresvisualizer {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens org.conava.datastructuresvisualizer to javafx.fxml;
-    exports org.conava.datastructuresvisualizer;
+    opens org.conava.dsv to javafx.fxml;
+    exports org.conava.dsv;
+    exports org.conava.dsv.controllers;
+    opens org.conava.dsv.controllers to javafx.fxml;
 }

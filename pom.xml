@@ -134,7 +134,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                org.conava.datastructuresvisualizer/org.conava.datastructuresvisualizer.HelloApplication
+                                org.conava.datastructuresvisualizer/org.conava.dsv.App
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
