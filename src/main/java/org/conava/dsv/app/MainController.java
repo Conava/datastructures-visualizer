@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import org.conava.dsv.modules.DataStructureModule;
+import org.conava.dsv.modules.LinkedListModule;
+import org.conava.dsv.modules.HashTableModule;
+import org.conava.dsv.modules.GraphModule;
 import org.conava.dsv.commands.CommandManager;
 
 public class MainController {
@@ -18,7 +21,7 @@ public class MainController {
     private Button quitButton;
 
     private DataStructureModule currentModule;
-    private CommandManager commandManager = new CommandManager();
+    private final CommandManager commandManager = new CommandManager();
 
     public void initialize() {
         // Initialize buttons and attach event handlers
@@ -45,7 +48,17 @@ public class MainController {
     }
 
     @FXML
-    private void handleSelectDataStructure() {
-        // Show data structure selection dialog
+    private void handleLinkedList() {
+        loadModule(new LinkedListModule());
+    }
+
+    @FXML
+    private void handleHashtable() {
+        loadModule(new HashTableModule());
+    }
+
+    @FXML
+    private void handleGraph() {
+        loadModule(new GraphModule());
     }
 }
