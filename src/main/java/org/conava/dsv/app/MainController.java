@@ -1,50 +1,41 @@
 package org.conava.dsv.app;
 
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import org.conava.dsv.modules.DataStructureModule;
-import org.conava.dsv.modules.LinkedListModule;
-import org.conava.dsv.modules.HashTableModule;
-import org.conava.dsv.modules.GraphModule;
-import org.conava.dsv.commands.CommandManager;
+import javafx.scene.control.*;
+import javafx.scene.layout.Pane;
+import org.conava.dsv.modules.*;
 
 public class MainController {
 
     @FXML
-    private BorderPane rootPane;
+    private Label lastCommandLabel;
+
     @FXML
-    private Button undoButton;
-    @FXML
-    private Button redoButton;
-    @FXML
-    private Button quitButton;
+    private Pane moduleContainer;
 
     private DataStructureModule currentModule;
-    private final CommandManager commandManager = new CommandManager();
-
-    public void initialize() {
-        // Initialize buttons and attach event handlers
-    }
-
-    public void loadModule(DataStructureModule module) {
-        currentModule = module;
-        rootPane.setCenter(module.getView());
-    }
 
     @FXML
     private void handleUndo() {
-        commandManager.undo();
+        // Implement undo functionality
+        updateLastCommand("Undo");
     }
 
     @FXML
     private void handleRedo() {
-        commandManager.redo();
+        // Implement redo functionality
+        updateLastCommand("Redo");
     }
 
     @FXML
     private void handleQuit() {
-        // Close application
+        // Close the application
+        Platform.exit();
+    }
+
+    private void updateLastCommand(String command) {
+        lastCommandLabel.setText(command);
     }
 
     @FXML
@@ -54,11 +45,19 @@ public class MainController {
 
     @FXML
     private void handleHashtable() {
-        loadModule(new HashTableModule());
+        // Implement and load HashtableModule
+        // loadModule(new HashtableModule());
     }
 
     @FXML
     private void handleGraph() {
-        loadModule(new GraphModule());
+        // Implement and load GraphModule
+        // loadModule(new GraphModule());
+    }
+
+    private void loadModule(DataStructureModule module) {
+        currentModule = module;
+        moduleContainer.getChildren().clear();
+        moduleContainer.getChildren().add(module.getModuleUI());
     }
 }

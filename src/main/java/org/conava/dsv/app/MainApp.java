@@ -11,6 +11,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
         primaryStage.setScene(new Scene(loader.load(), 1300, 800));
+        primaryStage.setResizable(false);
         primaryStage.setTitle("Data Structure Visualizer");
         primaryStage.show();
     }
