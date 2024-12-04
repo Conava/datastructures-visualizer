@@ -29,8 +29,11 @@ public class MainController {
     }
 
     @FXML
+    /**
+     * Handles the quit button click event.
+     * Close the application.
+     */
     private void handleQuit() {
-        // Close the application
         Platform.exit();
     }
 
@@ -45,14 +48,12 @@ public class MainController {
 
     @FXML
     private void handleHashtable() {
-        // Implement and load HashtableModule
-        // loadModule(new HashtableModule());
+        loadModule(new HashTableModule());
     }
 
     @FXML
     private void handleGraph() {
-        // Implement and load GraphModule
-        // loadModule(new GraphModule());
+        loadModule(new GraphModule());
     }
 
     private void loadModule(DataStructureModule module) {
