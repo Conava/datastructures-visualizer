@@ -13,28 +13,27 @@
     </top>
     <bottom>
         <ToolBar>
-            <GridPane hgap="10" style="-fx-background-color: transparent;">
-                <columnConstraints>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                    <ColumnConstraints hgrow="ALWAYS"/>
-                </columnConstraints>
-
+            <items>
                 <!-- Left Section -->
-                <HBox spacing="10" GridPane.columnIndex="0" alignment="CENTER_LEFT">
+                <HBox spacing="10">
                     <Button fx:id="undoButton" text="Undo" onAction="#handleUndo"/>
                     <Button fx:id="redoButton" text="Redo" onAction="#handleRedo"/>
                 </HBox>
 
+                <!-- Left Spacer -->
+                <Region HBox.hgrow="ALWAYS"/>
+
                 <!-- Middle Section -->
-                <Label fx:id="lastCommandLabel" text="" GridPane.columnIndex="1" alignment="CENTER"/>
+                <Label fx:id="lastCommandLabel" text="PLACEHOLDER"/>
+
+                <!-- Right Spacer -->
+                <Region HBox.hgrow="ALWAYS"/>
 
                 <!-- Right Section -->
-                <HBox GridPane.columnIndex="2" alignment="CENTER_RIGHT">
-                    <Button fx:id="quitButton" text="Quit" onAction="#handleQuit"/>
-                </HBox>
-            </GridPane>
+                <Button fx:id="quitButton" text="Quit" onAction="#handleQuit"/>
+            </items>
         </ToolBar>
+
     </bottom>
     <center>
         <!-- This Pane will host the data structure module's UI -->
