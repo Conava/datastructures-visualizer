@@ -8,9 +8,7 @@ import javafx.scene.layout.*;
 public class LinkedListModule implements DataStructureModule {
 
     private BorderPane moduleRoot;
-    private Pane visualizationArea;
-    private TextArea inputArea;
-    private TextArea outputArea;
+    private Label errorLabel;
 
     public LinkedListModule() {
         initializeModuleUI();
@@ -18,9 +16,22 @@ public class LinkedListModule implements DataStructureModule {
 
     private void initializeModuleUI() {
         moduleRoot = new BorderPane();
-        moduleRoot.setPrefSize(1300, 700); // Adjusted to fit within main window
+        moduleRoot.setStyle("-fx-border-color: gray; -fx-border-width: 1;");
+        moduleRoot.setPrefSize(1300, 720);
 
         // Left: Command Buttons
+        moduleRoot.setLeft(createCommandButtons());
+
+        // Bottom: Input and Output
+        moduleRoot.setBottom(createInputOutputArea());
+
+        // Center: Visualization Area
+        Pane visualizationArea = new Pane();
+        visualizationArea.setStyle("-fx-border-color: gray; -fx-border-width: 1;");
+        moduleRoot.setCenter(visualizationArea);
+    }
+
+    private VBox createCommandButtons() {
         VBox commandButtons = new VBox(10);
         commandButtons.setPadding(new Insets(10));
         commandButtons.setPrefWidth(200);
@@ -31,28 +42,27 @@ public class LinkedListModule implements DataStructureModule {
         // Add event handlers for buttons as needed
 
         commandButtons.getChildren().addAll(addNodeButton, deleteNodeButton);
-        moduleRoot.setLeft(commandButtons);
+        return commandButtons;
+    }
 
-        // Bottom: Input and Output
+    private HBox createInputOutputArea() {
         HBox inputOutput = new HBox(10);
         inputOutput.setPadding(new Insets(10));
         inputOutput.setStyle("-fx-border-color: gray; -fx-border-width: 1;");
 
-        inputArea = new TextArea();
+        TextArea inputArea = new TextArea();
         inputArea.setPromptText("Input");
-        inputArea.setPrefWidth(600);
-        outputArea = new TextArea();
+        inputArea.setPrefWidth(500);
+        TextArea outputArea = new TextArea();
         outputArea.setPromptText("Output");
-        outputArea.setPrefWidth(600);
+        outputArea.setPrefWidth(500);
         outputArea.setEditable(false);
+        errorLabel = new Label();
+        errorLabel.setPrefWidth(300);
+        errorLabel.setStyle("-fx-text-fill: red;");
 
-        inputOutput.getChildren().addAll(inputArea, outputArea);
-        moduleRoot.setBottom(inputOutput);
-
-        // Center: Visualization Area
-        visualizationArea = new Pane();
-        visualizationArea.setStyle("-fx-border-color: gray; -fx-border-width: 1;");
-        moduleRoot.setCenter(visualizationArea);
+        inputOutput.getChildren().addAll(inputArea, outputArea, errorLabel);
+        return inputOutput;
     }
 
     @Override
@@ -68,5 +78,13 @@ public class LinkedListModule implements DataStructureModule {
     @Override
     public Node getModuleUI() {
         return moduleRoot;
+    }
+
+    private void showError(String errorMessage) {
+        errorLabel.setText(errorMessage);
+    }
+
+    private void clearError() {
+        errorLabel.setText("");
     }
 }

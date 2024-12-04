@@ -13,25 +13,23 @@
     </top>
     <bottom>
         <ToolBar>
-            <items>
-                <!-- Left Section -->
-                <HBox spacing="10">
-                    <Button fx:id="undoButton" text="Undo" onAction="#handleUndo"/>
-                    <Button fx:id="redoButton" text="Redo" onAction="#handleRedo"/>
-                </HBox>
+            <!-- Left Section -->
+            <HBox spacing="10">
+                <Button fx:id="undoButton" text="Undo" onAction="#handleUndo"/>
+                <Button fx:id="redoButton" text="Redo" onAction="#handleRedo"/>
+            </HBox>
 
-                <!-- Left Spacer -->
-                <Region HBox.hgrow="ALWAYS"/>
+            <!-- Left Spacer -->
+            <Region HBox.hgrow="ALWAYS"/>
 
-                <!-- Middle Section -->
-                <Label fx:id="lastCommandLabel" text="PLACEHOLDER"/>
+            <!-- Middle Section -->
+            <Label fx:id="lastCommandLabel" text=""/>
 
-                <!-- Right Spacer -->
-                <Region HBox.hgrow="ALWAYS"/>
+            <!-- Right Spacer -->
+            <Region HBox.hgrow="ALWAYS"/>
 
-                <!-- Right Section -->
-                <Button fx:id="quitButton" text="Quit" onAction="#handleQuit"/>
-            </items>
+            <!-- Right Section -->
+            <Button fx:id="quitButton" text="Quit" onAction="#handleQuit"/>
         </ToolBar>
 
     </bottom>
