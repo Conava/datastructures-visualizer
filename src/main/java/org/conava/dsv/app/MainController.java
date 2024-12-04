@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import org.conava.dsv.modules.*;
+import org.conava.dsv.modules.linkedList.LinkedListModule;
 
 public class MainController {
 

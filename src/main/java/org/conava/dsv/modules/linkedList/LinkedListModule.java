@@ -1,17 +1,20 @@
-package org.conava.dsv.modules;
+package org.conava.dsv.modules.linkedList;
 
 import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import org.conava.dsv.modules.DataStructureModule;
 
 public class LinkedListModule implements DataStructureModule {
 
     private BorderPane moduleRoot;
     private Label errorLabel;
+    private CustomLinkedList linkedList;
 
     public LinkedListModule() {
         initializeModuleUI();
+        initializeDataStructure();
     }
 
     private void initializeModuleUI() {
@@ -63,6 +66,10 @@ public class LinkedListModule implements DataStructureModule {
 
         inputOutput.getChildren().addAll(inputArea, outputArea, errorLabel);
         return inputOutput;
+    }
+
+    private void initializeDataStructure() {
+        linkedList = new CustomLinkedList();
     }
 
     @Override
