@@ -36,13 +36,11 @@ public class MainController {
     @FXML
     private void handleUndo() {
         commandManager.undo();
-        updateLastCommand("Undo");
     }
 
     @FXML
     private void handleRedo() {
         commandManager.redo();
-        updateLastCommand("Redo");
     }
 
     @FXML
@@ -50,13 +48,13 @@ public class MainController {
         Platform.exit();
     }
 
-    private void updateLastCommand(String command) {
+    public void updateLastCommand(String command) {
         lastCommandLabel.setText(command);
     }
 
     @FXML
     private void handleLinkedList() {
-        loadModule(new LinkedListModule());
+        loadModule(new LinkedListModule(this, commandManager));
     }
 
     @FXML

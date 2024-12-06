@@ -33,4 +33,9 @@ public class LinkedList_clear implements Command {
     public String getString() {
         return "LinkedList.clear()";
     }
+
+    @Override
+    public String getOutput() {
+        return "Linked List Cleared";
+    }
 }

@@ -24,4 +24,9 @@ public class LinkedList_add implements Command {
     public String getString() {
         return "LinkedList.add(" + value + ")";
     }
+
+    @Override
+    public String getOutput() {
+        return "Added \"" + value + "\" to the linked list";
+    }
 }

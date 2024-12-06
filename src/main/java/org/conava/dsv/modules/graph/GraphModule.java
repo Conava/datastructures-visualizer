@@ -17,11 +17,6 @@ public class GraphModule implements DataStructureModule {
     }
 
     @Override
-    public void executeCommand(String command) {
-        // Handle linked list specific commands
-    }
-
-    @Override
     public Node getModuleUI() {
         return null;
     }

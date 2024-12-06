@@ -26,4 +26,9 @@ public class LinkedList_remove implements Command {
     public String getString() {
         return "LinkedList.remove(" + value + ")";
     }
+
+    @Override
+    public String getOutput() {
+        return "Removed \"" + value + "\" from index " + index;
+    }
 }

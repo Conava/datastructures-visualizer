@@ -4,15 +4,25 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
+import org.conava.dsv.app.MainController;
+import org.conava.dsv.commands.Command;
+import org.conava.dsv.commands.CommandManager;
 import org.conava.dsv.modules.DataStructureModule;
 
 public class LinkedListModule implements DataStructureModule {
 
     private BorderPane moduleRoot;
     private Label errorLabel;
-    private CustomLinkedList linkedList;
+    TextArea inputArea;
+    TextArea outputArea;
 
-    public LinkedListModule() {
+    private CustomLinkedList linkedList;
+    private CommandManager commandManager;
+    MainController mainController;
+
+    public LinkedListModule(MainController mainController, CommandManager commandManager) {
+        this.commandManager = commandManager;
+        this.mainController = mainController;
         initializeModuleUI();
         initializeDataStructure();
     }
@@ -41,10 +51,19 @@ public class LinkedListModule implements DataStructureModule {
         commandButtons.setStyle("-fx-border-color: gray; -fx-border-width: 1;");
 
         Button addButton = new Button(".add(Object o)");
+        addButton.setOnAction(e -> addCommand(new LinkedList_add(linkedList, inputArea.getText())));
+
         Button removeButton = new Button(".remove(Object o)");
+        removeButton.setOnAction(e -> addCommand(new LinkedList_remove(linkedList, inputArea.getText())));
+
         Button clearButton = new Button(".clear()");
+        clearButton.setOnAction(e -> addCommand(new LinkedList_clear(linkedList)));
+
         Button containsButton = new Button(".contains(Object o)");
+        containsButton.setOnAction(e -> addCommand(new LinkedList_contains(linkedList, inputArea.getText())));
+
         Button sizeButton = new Button(".size()");
+        sizeButton.setOnAction(e -> addCommand(new LinkedList_size(linkedList)));
 
         commandButtons.getChildren().addAll(addButton, removeButton, clearButton, containsButton, sizeButton);
         return commandButtons;
@@ -55,10 +74,10 @@ public class LinkedListModule implements DataStructureModule {
         inputOutput.setPadding(new Insets(10));
         inputOutput.setStyle("-fx-border-color: gray; -fx-border-width: 1;");
 
-        TextArea inputArea = new TextArea();
+        inputArea = new TextArea();
         inputArea.setPromptText("Input");
         inputArea.setPrefWidth(500);
-        TextArea outputArea = new TextArea();
+        outputArea = new TextArea();
         outputArea.setPromptText("Output");
         outputArea.setPrefWidth(500);
         outputArea.setEditable(false);
@@ -80,11 +99,6 @@ public class LinkedListModule implements DataStructureModule {
     }
 
     @Override
-    public void executeCommand(String command) {
-
-    }
-
-    @Override
     public Node getModuleUI() {
         return moduleRoot;
     }
@@ -95,5 +109,13 @@ public class LinkedListModule implements DataStructureModule {
 
     private void clearError() {
         errorLabel.setText("");
+    }
+
+    private void addCommand(Command command) {
+        commandManager.executeCommand(command);
+        String message = command.getOutput();
+        outputArea.setText(message);
+        inputArea.clear();
+        mainController.updateLastCommand(command.getString());
     }
 }
