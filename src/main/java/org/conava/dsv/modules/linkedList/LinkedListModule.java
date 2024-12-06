@@ -40,11 +40,13 @@ public class LinkedListModule implements DataStructureModule {
         commandButtons.setPrefWidth(200);
         commandButtons.setStyle("-fx-border-color: gray; -fx-border-width: 1;");
 
-        Button addNodeButton = new Button("Add Node");
-        Button deleteNodeButton = new Button("Delete Node");
-        // Add event handlers for buttons as needed
+        Button addButton = new Button(".add(Object o)");
+        Button removeButton = new Button(".remove(Object o)");
+        Button clearButton = new Button(".clear()");
+        Button containsButton = new Button(".contains(Object o)");
+        Button sizeButton = new Button(".size()");
 
-        commandButtons.getChildren().addAll(addNodeButton, deleteNodeButton);
+        commandButtons.getChildren().addAll(addButton, removeButton, clearButton, containsButton, sizeButton);
         return commandButtons;
     }
 

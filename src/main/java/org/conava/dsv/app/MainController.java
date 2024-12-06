@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
+import org.conava.dsv.commands.CommandManager;
 import org.conava.dsv.modules.*;
 import org.conava.dsv.modules.bindaryTree.BinaryTreeModule;
 import org.conava.dsv.modules.graph.GraphModule;
@@ -20,24 +21,31 @@ public class MainController {
     private Pane moduleContainer;
 
     private DataStructureModule currentModule;
+    private CommandManager commandManager;
+
+    private void loadModule(DataStructureModule module) {
+        currentModule = module;
+        moduleContainer.getChildren().clear();
+        moduleContainer.getChildren().add(module.getModuleUI());
+    }
+
+    public MainController() {
+        commandManager = new CommandManager();
+    }
 
     @FXML
     private void handleUndo() {
-        // Implement undo functionality
+        commandManager.undo();
         updateLastCommand("Undo");
     }
 
     @FXML
     private void handleRedo() {
-        // Implement redo functionality
+        commandManager.redo();
         updateLastCommand("Redo");
     }
 
     @FXML
-    /**
-     * Handles the quit button click event.
-     * Close the application.
-     */
     private void handleQuit() {
         Platform.exit();
     }
@@ -59,12 +67,6 @@ public class MainController {
     @FXML
     private void handleGraph() {
         loadModule(new GraphModule());
-    }
-
-    private void loadModule(DataStructureModule module) {
-        currentModule = module;
-        moduleContainer.getChildren().clear();
-        moduleContainer.getChildren().add(module.getModuleUI());
     }
 
     public void handleBinaryTree(ActionEvent actionEvent) {
