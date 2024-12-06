@@ -1,13 +1,14 @@
-package org.conava.dsv.modules;
+package org.conava.dsv.modules.bindaryTree;
 
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import org.conava.dsv.modules.DataStructureModule;
 
-public class HashTableModule implements DataStructureModule {
+public class BinaryTreeModule implements DataStructureModule {
     private Pane view;
 
-    public HashTableModule() {
-        // Initialize the HashTable visualization
+    public BinaryTreeModule() {
+        // Initialize the Graph visualization
     }
 
     @Override

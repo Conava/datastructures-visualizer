@@ -8,6 +8,7 @@
         <ToolBar>
             <Button text="Linked List" onAction="#handleLinkedList"/>
             <Button text="Hashtable" onAction="#handleHashtable"/>
+            <Button text="Binary Tree" onAction="#handleBinaryTree"/>
             <Button text="Graph" onAction="#handleGraph"/>
         </ToolBar>
     </top>

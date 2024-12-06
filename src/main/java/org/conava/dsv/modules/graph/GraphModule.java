@@ -1,7 +1,8 @@
-package org.conava.dsv.modules;
+package org.conava.dsv.modules.graph;
 
 import javafx.scene.Node;
 import javafx.scene.layout.Pane;
+import org.conava.dsv.modules.DataStructureModule;
 
 public class GraphModule implements DataStructureModule {
     private Pane view;

@@ -1,10 +1,14 @@
 package org.conava.dsv.app;
 
 import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import org.conava.dsv.modules.*;
+import org.conava.dsv.modules.bindaryTree.BinaryTreeModule;
+import org.conava.dsv.modules.graph.GraphModule;
+import org.conava.dsv.modules.hashTable.HashTableModule;
 import org.conava.dsv.modules.linkedList.LinkedListModule;
 
 public class MainController {
@@ -61,5 +65,9 @@ public class MainController {
         currentModule = module;
         moduleContainer.getChildren().clear();
         moduleContainer.getChildren().add(module.getModuleUI());
+    }
+
+    public void handleBinaryTree(ActionEvent actionEvent) {
+        loadModule(new BinaryTreeModule());
     }
 }
