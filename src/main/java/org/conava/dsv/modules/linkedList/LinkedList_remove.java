@@ -29,6 +29,22 @@ public class LinkedList_remove implements Command {
 
     @Override
     public String getOutput() {
+        if (value == null) {
+            return "";
+        }
         return "Removed \"" + value + "\" from index " + index;
+    }
+
+    @Override
+    public String getError() {
+        if (value == null) {
+            return "Value cannot be null";
+        }
+
+        if (value.isEmpty()) {
+            return "Value is empty. Enter a name in the text field to remove the desired element";
+        }
+
+        return "";
     }
 }

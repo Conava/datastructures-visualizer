@@ -36,6 +36,17 @@ public class LinkedList_clear implements Command {
 
     @Override
     public String getOutput() {
+        if (values.isEmpty()) {
+            return "";
+        }
         return "Linked List Cleared";
+    }
+
+    @Override
+    public String getError() {
+        if (values.isEmpty()) {
+            return "Linked List is already empty";
+        }
+        return "";
     }
 }

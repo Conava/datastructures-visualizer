@@ -30,4 +30,17 @@ public class LinkedList_contains implements Command {
     public String getOutput() {
         return "" + contains;
     }
+
+    @Override
+    public String getError() {
+        if (value == null) {
+            return "Value cannot be null";
+        }
+
+        if (value.isEmpty()) {
+            return "Please enter a value in the text field to look for the desired element";
+        }
+
+        return "";
+    }
 }

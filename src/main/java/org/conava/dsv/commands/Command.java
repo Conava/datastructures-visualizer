@@ -5,4 +5,5 @@ public interface Command {
     void undo();
     String getString();
     String getOutput();
+    String getError();
 }

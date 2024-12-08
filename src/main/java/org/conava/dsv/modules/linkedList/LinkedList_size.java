@@ -24,4 +24,8 @@ public class LinkedList_size implements Command {
     public String getOutput() {
         return "" + size;
     }
+
+    public String getError() {
+        return "";
+    }
 }

@@ -12,7 +12,9 @@ public class LinkedList_add implements Command {
     }
     @Override
     public void execute() {
-        linkedList.add(value);
+        if(value != null && !value.isEmpty()) {
+            linkedList.add(value);
+        }
     }
 
     @Override
@@ -22,11 +24,27 @@ public class LinkedList_add implements Command {
 
     @Override
     public String getString() {
+        if (value == null) {
+            return "";
+        }
         return "LinkedList.add(" + value + ")";
     }
 
     @Override
     public String getOutput() {
-        return "Added \"" + value + "\" to the linked list";
+        return "";
+    }
+
+    @Override
+    public String getError() {
+        if (value == null) {
+            return "Value cannot be null";
+        }
+
+        if (value.isEmpty()) {
+            return "Please enter a value in the text field to add elements to the linked list";
+        }
+
+        return "";
     }
 }
