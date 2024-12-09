@@ -13,6 +13,8 @@ import org.conava.dsv.modules.graph.GraphModule;
 import org.conava.dsv.modules.hashTable.HashTableModule;
 import org.conava.dsv.modules.linkedList.LinkedListModule;
 
+import java.util.Optional;
+
 public class MainController {
 
     @FXML
@@ -74,9 +76,20 @@ public class MainController {
     }
 
     @FXML
-    private void handleGraph() {
-        loadModule(new GraphModule());
-    }
+private void handleGraph() {
+    // Create a ChoiceDialog to get the boolean value
+    ChoiceDialog<Boolean> dialog = new ChoiceDialog<>(true, true, false);
+    dialog.setTitle("Graph Module Configuration");
+    dialog.setHeaderText("Choose the graph type");
+    dialog.setContentText("Is the graph directed?");
+
+    // Show the dialog and capture the result
+    Optional<Boolean> result = dialog.showAndWait();
+    result.ifPresent(isDirected -> {
+        // Pass the boolean value to the GraphModule constructor
+        loadModule(new GraphModule(this, commandManager, isDirected));
+    });
+}
 
     public void handleBinaryTree(ActionEvent actionEvent) {
         loadModule(new BinaryTreeModule(this,commandManager));
