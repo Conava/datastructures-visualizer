@@ -21,6 +21,8 @@ public class HashTableModule implements DataStructureModule {
     private TextArea inputAreaValue;
     private TextArea outputArea;
 
+    private Label hashCalcLabel; // Label to show last hash calculation
+
     private CustomHashTable hashTable;
     private final CommandManager commandManager;
     private final MainController mainController;
@@ -42,6 +44,15 @@ public class HashTableModule implements DataStructureModule {
         moduleRoot.setLeft(createCommandButtons());
         moduleRoot.setBottom(createInputOutputArea());
 
+        // A container for both visualization and hash calc label
+        VBox centerBox = new VBox(10);
+        centerBox.setPadding(new Insets(10));
+        centerBox.setAlignment(Pos.TOP_LEFT);
+
+        hashCalcLabel = new Label("Hash Calculation: ");
+        hashCalcLabel.setStyle("-fx-font-weight: bold;");
+        centerBox.getChildren().add(hashCalcLabel);
+
         visualizationContainer = new FlowPane();
         visualizationContainer.setPadding(new Insets(10));
         visualizationContainer.setHgap(10);
@@ -49,7 +60,8 @@ public class HashTableModule implements DataStructureModule {
         visualizationContainer.setAlignment(Pos.TOP_LEFT);
         visualizationContainer.setStyle("-fx-border-color: gray; -fx-border-width: 1;");
 
-        moduleRoot.setCenter(visualizationContainer);
+        centerBox.getChildren().add(visualizationContainer);
+        moduleRoot.setCenter(centerBox);
     }
 
     private VBox createCommandButtons() {
@@ -151,8 +163,8 @@ public class HashTableModule implements DataStructureModule {
     private void updateVisualization() {
         visualizationContainer.getChildren().clear();
 
-        // Visualize the hash table as a series of buckets, each bucket is a vertical column
-        // containing key-value pairs.
+        // Show the last hash calculation steps
+        hashCalcLabel.setText("Hash Calculation: " + hashTable.getLastHashCalculation());
 
         int capacity = hashTable.capacity();
         var buckets = hashTable.getBuckets();
@@ -171,7 +183,6 @@ public class HashTableModule implements DataStructureModule {
                 bucketBox.getChildren().add(emptyText);
             } else {
                 for (CustomHashTable.Entry entry : bucket) {
-                    // Represent each entry as a rectangle with text: "key=value"
                     StackPane entryPane = new StackPane();
                     Rectangle rect = new Rectangle(100, 30);
                     rect.setStyle("-fx-fill: lightblue; -fx-stroke: black; -fx-stroke-width: 1;");
