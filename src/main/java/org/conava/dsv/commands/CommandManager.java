@@ -27,4 +27,11 @@ public class CommandManager {
             undoStack.push(command);
         }
     }
+
+    public String getLastCommandString() {
+        if (!undoStack.isEmpty()) {
+            return undoStack.peek().getString();
+        }
+        return "";
+    }
 }

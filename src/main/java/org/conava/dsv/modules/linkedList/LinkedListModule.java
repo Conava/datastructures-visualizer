@@ -2,6 +2,7 @@ package org.conava.dsv.modules.linkedList;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -87,20 +88,19 @@ public class LinkedListModule implements DataStructureModule {
             addCommand(new LinkedList_size(linkedList));
         });
 
-        // Example undo/redo buttons if integrated in the CommandManager
-        Button undoButton = new Button("Undo");
-        undoButton.setOnAction(e -> {
+        mainController.setUndoAction(e -> {
             commandManager.undo();
+            mainController.updateLastCommand("Last command: " + commandManager.getLastCommandString());
             updateVisualization();
         });
 
-        Button redoButton = new Button("Redo");
-        redoButton.setOnAction(e -> {
+        mainController.setRedoAction(e -> {
             commandManager.redo();
+            mainController.updateLastCommand("Last command: " + commandManager.getLastCommandString());
             updateVisualization();
         });
 
-        commandButtons.getChildren().addAll(addButton, removeButton, clearButton, containsButton, sizeButton, undoButton, redoButton);
+        commandButtons.getChildren().addAll(addButton, removeButton, clearButton, containsButton, sizeButton);
         return commandButtons;
     }
 
@@ -167,23 +167,29 @@ public class LinkedListModule implements DataStructureModule {
 
             visualizationContainer.getChildren().add(nodePane);
 
-            // Add an arrow if this is not the last element
             if (i < size - 1) {
-                // A simple arrow using a Line and a Polygon
-                HBox arrowBox = new HBox(2);
+                HBox arrowBox = new HBox();
+                arrowBox.setSpacing(0);
 
-                Line line = new Line(0, 0, 20, 0);
+                Group arrowGroup = new Group();
+
+                // Draw the line at y=15 (vertical center of a 30px high node)
+                Line line = new Line(0,15,20,15);
                 line.setStyle("-fx-stroke: black; -fx-stroke-width: 2;");
 
-                Polygon arrowHead = new Polygon(0,0, -5,-5, -5,5);
+                // Position the arrowhead so its tip is at the end of the line (20,15)
+                Polygon arrowHead = new Polygon(
+                        20.0, 15.0,
+                        15.0, 10.0,
+                        15.0, 20.0
+                );
                 arrowHead.setStyle("-fx-fill: black;");
-                arrowHead.setTranslateX(20);
 
-                StackPane arrowPane = new StackPane(line, arrowHead);
-                arrowBox.getChildren().add(arrowPane);
-
+                arrowGroup.getChildren().addAll(line, arrowHead);
+                arrowBox.getChildren().add(arrowGroup);
                 visualizationContainer.getChildren().add(arrowBox);
             }
+
         }
     }
 }
