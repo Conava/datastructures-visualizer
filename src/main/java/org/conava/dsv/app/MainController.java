@@ -8,7 +8,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import org.conava.dsv.commands.CommandManager;
 import org.conava.dsv.modules.*;
-import org.conava.dsv.modules.bindaryTree.BinaryTreeModule;
+import org.conava.dsv.modules.binaryTree.BinaryTreeModule;
 import org.conava.dsv.modules.graph.GraphModule;
 import org.conava.dsv.modules.hashTable.HashTableModule;
 import org.conava.dsv.modules.linkedList.LinkedListModule;
@@ -79,6 +79,6 @@ public class MainController {
     }
 
     public void handleBinaryTree(ActionEvent actionEvent) {
-        loadModule(new BinaryTreeModule());
+        loadModule(new BinaryTreeModule(this,commandManager));
     }
 }
