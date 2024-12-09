@@ -3,9 +3,7 @@ package org.conava.dsv.modules.graph;
 import java.util.*;
 
 /**
- * A simple graph implementation that can be either directed or undirected.
- * Vertices are identified by a unique ID (string). Coordinates are not stored here.
- * The layout (coordinates) will be determined in the module's visualization step.
+ * The CustomGraph class represents a custom graph data structure.
  */
 public class CustomGraph {
     public static class Vertex {
@@ -15,9 +13,9 @@ public class CustomGraph {
         }
     }
 
-    private boolean directed;
-    private Map<String, Vertex> vertices;
-    private Map<String, Set<String>> adjacency;
+    private final boolean directed;
+    private final Map<String, Vertex> vertices;
+    private final Map<String, Set<String>> adjacency;
     private int edgeCount;
 
     public CustomGraph(boolean directed) {
@@ -45,12 +43,10 @@ public class CustomGraph {
         if (!vertices.containsKey(id)) {
             return false;
         }
-        // Remove all edges connected to this vertex
         Set<String> edgesFrom = adjacency.get(id);
         edgeCount -= edgesFrom.size();
         adjacency.remove(id);
 
-        // Remove from all adjacency sets
         for (Set<String> nbrs : adjacency.values()) {
             if (nbrs.remove(id)) {
                 edgeCount--;
@@ -67,7 +63,6 @@ public class CustomGraph {
         }
         Set<String> fromSet = adjacency.get(from);
         if (fromSet.contains(to)) {
-            // Edge already exists
             return false;
         }
         fromSet.add(to);
@@ -125,5 +120,58 @@ public class CustomGraph {
 
     public Map<String, Set<String>> getAdjacency() {
         return adjacency;
+    }
+
+    // Get neighbors of a vertex
+    public Set<String> getNeighbors(String id) {
+        return adjacency.getOrDefault(id, Collections.emptySet());
+    }
+
+    // Dijkstra's algorithm for shortest path (assuming unweighted or equal weights = 1)
+    // Returns the shortest path from 'start' to 'end' as a list of vertex IDs, or empty if no path.
+    public List<String> dijkstra(String start, String end) {
+        if (!containsVertex(start) || !containsVertex(end)) return Collections.emptyList();
+        if (start.equals(end)) return Collections.singletonList(start);
+
+        // Distances and predecessor maps
+        Map<String, Integer> dist = new HashMap<>();
+        Map<String, String> prev = new HashMap<>();
+        for (String v : vertices.keySet()) {
+            dist.put(v, Integer.MAX_VALUE);
+            prev.put(v, null);
+        }
+        dist.put(start, 0);
+
+        // Priority queue
+        PriorityQueue<String> pq = new PriorityQueue<>(Comparator.comparingInt(dist::get));
+        pq.add(start);
+
+        while (!pq.isEmpty()) {
+            String u = pq.poll();
+            if (u.equals(end)) break; // Found shortest path
+
+            int d = dist.get(u);
+            for (String nbr : getNeighbors(u)) {
+                int alt = d + 1; // cost = 1 for each edge
+                if (alt < dist.get(nbr)) {
+                    dist.put(nbr, alt);
+                    prev.put(nbr, u);
+                    pq.add(nbr);
+                }
+            }
+        }
+
+        // Reconstruct path
+        List<String> path = new ArrayList<>();
+        String curr = end;
+        while (curr != null) {
+            path.add(curr);
+            curr = prev.get(curr);
+        }
+        Collections.reverse(path);
+        if (path.get(0).equals(start)) {
+            return path;
+        }
+        return Collections.emptyList();
     }
 }

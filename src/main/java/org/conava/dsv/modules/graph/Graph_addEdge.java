@@ -47,6 +47,6 @@ public class Graph_addEdge implements Command {
 
     @Override
     public String getString() {
-        return "Graph_addEdge(" + from + "," + to + ")";
+        return "graph.add(" + from + "," + to + ")";
     }
 }

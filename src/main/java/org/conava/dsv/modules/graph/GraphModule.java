@@ -103,6 +103,20 @@ public class GraphModule implements DataStructureModule {
             }
         });
 
+        Button findPathButton = new Button(".findPath(from,to)");
+        findPathButton.setOnAction(e -> {
+            String[] parts = inputArea.getText().split("\\s+");
+            if (parts.length == 2) {
+                addCommand(new Graph_findPath(graph, parts[0], parts[1]));
+            } else {
+                errorLabel.setText("Expected input: from to");
+            }
+        });
+
+// Then add findPathButton to the commandButtons VBox
+        commandButtons.getChildren().add(findPathButton);
+
+
         Button sizeButton = new Button(".vertexCount()");
         sizeButton.setOnAction(e -> {
             addCommand(new Graph_vertexCount(graph));
@@ -159,11 +173,6 @@ public class GraphModule implements DataStructureModule {
     @Override
     public Node getModuleUI() {
         return moduleRoot;
-    }
-
-    @Override
-    public Pane getView() {
-        return null;
     }
 
     private void addCommand(Command command) {
