@@ -232,6 +232,8 @@ public class GraphModule implements DataStructureModule {
             }
         }
 
+        //todo: Make it show arrowhead for directed graphs
+
         // Draw vertices
         for (var v : vertexList) {
             double[] pos = positions.get(v.id);

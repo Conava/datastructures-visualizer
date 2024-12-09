@@ -167,6 +167,7 @@ public class LinkedListModule implements DataStructureModule {
 
             visualizationContainer.getChildren().add(nodePane);
 
+            // todo: Center the arrow horizontally
             if (i < size - 1) {
                 HBox arrowBox = new HBox();
                 arrowBox.setSpacing(0);

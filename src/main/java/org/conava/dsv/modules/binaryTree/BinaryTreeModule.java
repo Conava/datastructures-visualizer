@@ -151,6 +151,7 @@ public class BinaryTreeModule implements DataStructureModule {
         drawNode(binaryTree.getRoot(), startX, startY, visualizationArea.getWidth() / 4);
     }
 
+    //todo: Make it fit the canvas and not overflow
     private void drawNode(CustomBinaryTree.Node node, double x, double y, double xOffset) {
         if (node == null) return;
 
