@@ -29,11 +29,14 @@ public class MainController {
     @FXML
     private Pane moduleContainer;
 
-    private DataStructureModule currentModule;
+    private LinkedListModule linkedListModule;
+    private HashTableModule hashTableModule;
+    private GraphModule graphModule;
+    private BinaryTreeModule binaryTreeModule;
+
     private CommandManager commandManager;
 
     private void loadModule(DataStructureModule module) {
-        currentModule = module;
         moduleContainer.getChildren().clear();
         moduleContainer.getChildren().add(module.getModuleUI());
     }
@@ -43,10 +46,12 @@ public class MainController {
     }
 
     @FXML
-    private void handleUndo() {}
+    private void handleUndo() {
+    }
 
     @FXML
-    private void handleRedo() {}
+    private void handleRedo() {
+    }
 
     public void setUndoAction(EventHandler<ActionEvent> handler) {
         undoButton.setOnAction(handler);
@@ -67,31 +72,52 @@ public class MainController {
 
     @FXML
     private void handleLinkedList() {
-        loadModule(new LinkedListModule(this, commandManager));
+        if (linkedListModule == null) {
+            linkedListModule = new LinkedListModule(this, commandManager);
+        }
+        loadModule(linkedListModule);
     }
 
     @FXML
     private void handleHashtable() {
-        loadModule(new HashTableModule(this, commandManager));
+        if (hashTableModule == null) {
+            hashTableModule = new HashTableModule(this, commandManager);
+        }
+        loadModule(hashTableModule);
     }
 
     @FXML
-private void handleGraph() {
-    // Create a ChoiceDialog to get the boolean value
-    ChoiceDialog<Boolean> dialog = new ChoiceDialog<>(true, true, false);
-    dialog.setTitle("Graph Module Configuration");
-    dialog.setHeaderText("Choose the graph type");
-    dialog.setContentText("Is the graph directed?");
+    private void handleGraph() {
+        if (graphModule == null) {
+            configureGraph();
+        }
+        loadModule(graphModule);
 
-    // Show the dialog and capture the result
-    Optional<Boolean> result = dialog.showAndWait();
-    result.ifPresent(isDirected -> {
-        // Pass the boolean value to the GraphModule constructor
-        loadModule(new GraphModule(this, commandManager, isDirected));
-    });
-}
+    }
+
+    private void configureGraph() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Graph Module Configuration");
+        alert.setHeaderText("Choose the graph type");
+        alert.setContentText("Is the graph directed?");
+
+        ButtonType buttonYes = new ButtonType("Yes");
+        ButtonType buttonNo = new ButtonType("No");
+        alert.getButtonTypes().setAll(buttonYes, buttonNo);
+
+        // Show the dialog and capture the result
+        Optional<ButtonType> result = alert.showAndWait();
+        result.ifPresent(buttonType -> {
+            boolean isDirected = buttonType == buttonYes;
+            // Pass the boolean value to the GraphModule constructor
+            graphModule = new GraphModule(this, commandManager, isDirected);
+        });
+    }
 
     public void handleBinaryTree(ActionEvent actionEvent) {
-        loadModule(new BinaryTreeModule(this,commandManager));
+        if (binaryTreeModule == null) {
+            binaryTreeModule = new BinaryTreeModule(this, commandManager);
+        }
+        loadModule(binaryTreeModule);
     }
 }

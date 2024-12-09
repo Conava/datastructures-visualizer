@@ -20,7 +20,7 @@ public class GraphModule implements DataStructureModule {
     private TextArea inputArea;
     private TextArea outputArea;
 
-    private CustomGraph graph;
+    private final CustomGraph graph;
     private final CommandManager commandManager;
     private final MainController mainController;
 
@@ -212,35 +212,38 @@ public class GraphModule implements DataStructureModule {
                 visualizationArea.getChildren().add(line);
 
                 if (graph.isDirected()) {
-                    // Draw arrowhead
+                    //Draw arrowheads
+                    double nodeRadius = 15;
                     double dx = toPos[0] - fromPos[0];
                     double dy = toPos[1] - fromPos[1];
                     double angle = Math.atan2(dy, dx);
                     double arrowLength = 10;
                     double arrowAngle = Math.toRadians(20);
 
-                    double x1 = toPos[0] - arrowLength * Math.cos(angle - arrowAngle);
-                    double y1 = toPos[1] - arrowLength * Math.sin(angle - arrowAngle);
+                    // Shift the arrow tip back by the node radius
+                    double tipX = toPos[0] - nodeRadius * Math.cos(angle);
+                    double tipY = toPos[1] - nodeRadius * Math.sin(angle);
 
-                    double x2 = toPos[0] - arrowLength * Math.cos(angle + arrowAngle);
-                    double y2 = toPos[1] - arrowLength * Math.sin(angle + arrowAngle);
+                    double x1 = tipX - arrowLength * Math.cos(angle - arrowAngle);
+                    double y1 = tipY - arrowLength * Math.sin(angle - arrowAngle);
 
-                    Polygon arrowHead = new Polygon(toPos[0], toPos[1], x1, y1, x2, y2);
+                    double x2 = tipX - arrowLength * Math.cos(angle + arrowAngle);
+                    double y2 = tipY - arrowLength * Math.sin(angle + arrowAngle);
+
+                    Polygon arrowHead = new Polygon(tipX, tipY, x1, y1, x2, y2);
                     arrowHead.setStyle("-fx-fill: black;");
                     visualizationArea.getChildren().add(arrowHead);
+
                 }
             }
         }
 
-        //todo: Make it show arrowhead for directed graphs
-
-        // Draw vertices
         for (var v : vertexList) {
             double[] pos = positions.get(v.id);
             Circle circle = new Circle(pos[0], pos[1], 15);
             circle.setStyle("-fx-fill: lightblue; -fx-stroke: black; -fx-stroke-width: 1;");
             Text text = new Text(v.id);
-            text.setX(pos[0] - text.getLayoutBounds().getWidth()/2);
+            text.setX(pos[0] - text.getLayoutBounds().getWidth() / 2);
             text.setY(pos[1] + 5);
 
             visualizationArea.getChildren().addAll(circle, text);

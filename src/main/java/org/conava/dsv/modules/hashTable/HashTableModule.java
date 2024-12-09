@@ -66,29 +66,19 @@ public class HashTableModule implements DataStructureModule {
         });
 
         Button removeButton = new Button(".remove(key)");
-        removeButton.setOnAction(e -> {
-            addCommand(new HashTable_remove(hashTable, inputAreaKey.getText()));
-        });
+        removeButton.setOnAction(e -> addCommand(new HashTable_remove(hashTable, inputAreaKey.getText())));
 
         Button getButton = new Button(".get(key)");
-        getButton.setOnAction(e -> {
-            addCommand(new HashTable_get(hashTable, inputAreaKey.getText()));
-        });
+        getButton.setOnAction(e -> addCommand(new HashTable_get(hashTable, inputAreaKey.getText())));
 
         Button containsButton = new Button(".containsKey(key)");
-        containsButton.setOnAction(e -> {
-            addCommand(new HashTable_containsKey(hashTable, inputAreaKey.getText()));
-        });
+        containsButton.setOnAction(e -> addCommand(new HashTable_containsKey(hashTable, inputAreaKey.getText())));
 
         Button clearButton = new Button(".clear()");
-        clearButton.setOnAction(e -> {
-            addCommand(new HashTable_clear(hashTable));
-        });
+        clearButton.setOnAction(e -> addCommand(new HashTable_clear(hashTable)));
 
         Button sizeButton = new Button(".size()");
-        sizeButton.setOnAction(e -> {
-            addCommand(new HashTable_size(hashTable));
-        });
+        sizeButton.setOnAction(e -> addCommand(new HashTable_size(hashTable)));
 
         mainController.setUndoAction(e -> {
             commandManager.undo();

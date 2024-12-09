@@ -20,7 +20,7 @@ public class CustomHashTable {
         }
     }
 
-    private List<LinkedList<Entry>> buckets;
+    private final List<LinkedList<Entry>> buckets;
     private int size;
     private static final int DEFAULT_CAPACITY = 10;
 
