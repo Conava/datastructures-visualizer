@@ -167,30 +167,34 @@ public class LinkedListModule implements DataStructureModule {
 
             visualizationContainer.getChildren().add(nodePane);
 
-            // todo: Center the arrow horizontally
             if (i < size - 1) {
                 HBox arrowBox = new HBox();
-                arrowBox.setSpacing(0);
+                arrowBox.setPrefSize(60, 30);
+                arrowBox.setAlignment(Pos.CENTER); // center horizontally and vertically
 
-                Group arrowGroup = new Group();
+                StackPane arrowPane = new StackPane();
+                arrowPane.setPrefSize(60, 30);
+                arrowPane.setAlignment(Pos.CENTER); // center children inside
 
-                // Draw the line at y=15 (vertical center of a 30px high node)
-                Line line = new Line(0,15,20,15);
+                // Draw the line from -10 to 10 horizontally at y=0 (center line)
+                Line line = new Line(-10, 0, 10, 0);
                 line.setStyle("-fx-stroke: black; -fx-stroke-width: 2;");
 
-                // Position the arrowhead so its tip is at the end of the line (20,15)
+                // Arrowhead at the end of the line (10,0)
                 Polygon arrowHead = new Polygon(
-                        20.0, 15.0,
-                        15.0, 10.0,
-                        15.0, 20.0
+                        10.0, 0.0,
+                        5.0, -5.0,
+                        5.0, 5.0
                 );
                 arrowHead.setStyle("-fx-fill: black;");
 
-                arrowGroup.getChildren().addAll(line, arrowHead);
-                arrowBox.getChildren().add(arrowGroup);
+                Group arrowGroup = new Group(line, arrowHead);
+
+                // No vertical translation needed since we are relying on center alignment
+                arrowPane.getChildren().add(arrowGroup);
+                arrowBox.getChildren().add(arrowPane);
                 visualizationContainer.getChildren().add(arrowBox);
             }
-
         }
-    }
+        }
 }
