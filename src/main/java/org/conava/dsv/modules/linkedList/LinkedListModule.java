@@ -131,11 +131,6 @@ public class LinkedListModule implements DataStructureModule {
     }
 
     @Override
-    public Pane getView() {
-        return null;
-    }
-
-    @Override
     public Node getModuleUI() {
         return moduleRoot;
     }

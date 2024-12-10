@@ -2,7 +2,6 @@ package org.conava.dsv.modules.linkedList;
 
 import org.conava.dsv.commands.Command;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 

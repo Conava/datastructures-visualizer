@@ -3,8 +3,8 @@ package org.conava.dsv.modules.hashTable;
 import org.conava.dsv.commands.Command;
 
 public class HashTable_get implements Command {
-    private CustomHashTable hashTable;
-    private String key;
+    private final CustomHashTable hashTable;
+    private final String key;
     private String error = "";
     private String output = "";
 

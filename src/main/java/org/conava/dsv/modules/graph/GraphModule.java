@@ -112,10 +112,7 @@ public class GraphModule implements DataStructureModule {
                 errorLabel.setText("Expected input: from to");
             }
         });
-
-// Then add findPathButton to the commandButtons VBox
         commandButtons.getChildren().add(findPathButton);
-
 
         Button sizeButton = new Button(".vertexCount()");
         sizeButton.setOnAction(e -> {
@@ -138,7 +135,11 @@ public class GraphModule implements DataStructureModule {
             updateVisualization();
         });
 
-        // No redo as requested
+        mainController.setRedoAction(e -> {
+            commandManager.redo();
+            mainController.updateLastCommand("Last command: " + commandManager.getLastCommandString());
+            updateVisualization();
+        });
 
         commandButtons.getChildren().addAll(
                 addVertexButton, removeVertexButton, addEdgeButton, removeEdgeButton,
@@ -187,8 +188,6 @@ public class GraphModule implements DataStructureModule {
     private void updateVisualization() {
         visualizationArea.getChildren().clear();
 
-        // We'll use a simple layout algorithm to place vertices automatically:
-        // Place all vertices evenly spaced in a circle.
         Collection<CustomGraph.Vertex> verts = graph.getVertices();
         int n = verts.size();
         if (n == 0) return;

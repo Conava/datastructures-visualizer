@@ -36,6 +36,6 @@ public class Graph_containsVertex implements Command {
 
     @Override
     public String getString() {
-        return "Graph_containsVertex(" + id + ")";
+        return "graph.containsVertex(" + id + ")";
     }
 }

@@ -4,15 +4,13 @@ import org.conava.dsv.commands.Command;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class Graph_clear implements Command {
     private final CustomGraph graph;
     private String error = "";
     private String output = "";
-    // To undo, store all vertices and edges
-    private List<String> oldVertices = new ArrayList<>();
-    private List<String[]> oldEdges = new ArrayList<>();
+    private final List<String> oldVertices = new ArrayList<>();
+    private final List<String[]> oldEdges = new ArrayList<>();
 
     public Graph_clear(CustomGraph graph) {
         this.graph = graph;
@@ -59,6 +57,6 @@ public class Graph_clear implements Command {
 
     @Override
     public String getString() {
-        return "Graph_clear()";
+        return "graph.clear()";
     }
 }

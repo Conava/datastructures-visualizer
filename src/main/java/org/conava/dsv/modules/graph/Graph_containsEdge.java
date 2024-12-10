@@ -37,6 +37,6 @@ public class Graph_containsEdge implements Command {
 
     @Override
     public String getString() {
-        return "Graph_containsEdge(" + from + "," + to + ")";
+        return "graph.containsEdge(" + from + "," + to + ")";
     }
 }

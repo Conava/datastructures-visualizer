@@ -34,6 +34,6 @@ public class Graph_vertexCount implements Command {
 
     @Override
     public String getString() {
-        return "Graph_vertexCount()";
+        return "graph.vertexCount()";
     }
 }

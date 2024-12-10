@@ -15,6 +15,10 @@ public class BinaryTree_contains implements Command {
 
     @Override
     public void execute() {
+        if (value == null || value.isEmpty()) {
+            error = "Value cannot be empty.";
+            return;
+        }
         boolean found = binaryTree.contains(value);
         output = "contains(" + value + ") = " + found;
     }
@@ -36,6 +40,6 @@ public class BinaryTree_contains implements Command {
 
     @Override
     public String getString() {
-        return "BinaryTree_contains(" + value + ")";
+        return "BinaryTree.contains(" + value + ")";
     }
 }

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.geometry.*?>
 <BorderPane fx:id="rootPane" xmlns:fx="http://javafx.com/fxml" fx:controller="org.conava.dsv.app.MainController"
             prefWidth="1300" prefHeight="800">
     <top>
@@ -16,8 +15,8 @@
         <ToolBar>
             <!-- Left Section -->
             <HBox spacing="10">
-                <Button fx:id="undoButton" text="Undo" onAction="#handleUndo"/>
-                <Button fx:id="redoButton" text="Redo" onAction="#handleRedo"/>
+                <Button fx:id="undoButton" text="Undo"/>
+                <Button fx:id="redoButton" text="Redo"/>
             </HBox>
 
             <!-- Left Spacer -->

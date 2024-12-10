@@ -6,11 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HashTable_clear implements Command {
-    private CustomHashTable hashTable;
-    private String error = "";
+    private final CustomHashTable hashTable;
     private String output = "";
     // To support undo, store the state before clearing
-    private List<StateEntry> oldEntries = new ArrayList<>();
+    private final List<StateEntry> oldEntries = new ArrayList<>();
 
     private static class StateEntry {
         String key;
@@ -52,11 +51,11 @@ public class HashTable_clear implements Command {
 
     @Override
     public String getError() {
-        return error;
+        return "";
     }
 
     @Override
     public String getString() {
-        return "HashTable_clear()";
+        return "hashTable.clear()";
     }
 }

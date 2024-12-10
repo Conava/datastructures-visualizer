@@ -21,7 +21,7 @@ public class HashTableModule implements DataStructureModule {
     private TextArea inputAreaValue;
     private TextArea outputArea;
 
-    private Label hashCalcLabel; // Label to show last hash calculation
+    private Label hashCalcLabel;
 
     private CustomHashTable hashTable;
     private final CommandManager commandManager;
@@ -141,11 +141,6 @@ public class HashTableModule implements DataStructureModule {
     }
 
     @Override
-    public Pane getView() {
-        return null;
-    }
-
-    @Override
     public Node getModuleUI() {
         return moduleRoot;
     }
@@ -191,7 +186,6 @@ public class HashTableModule implements DataStructureModule {
                     bucketBox.getChildren().add(entryPane);
                 }
             }
-
             visualizationContainer.getChildren().add(bucketBox);
         }
     }

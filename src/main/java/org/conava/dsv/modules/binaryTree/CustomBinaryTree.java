@@ -1,7 +1,8 @@
 package org.conava.dsv.modules.binaryTree;
 
-import java.util.Objects;
-
+/**
+ * The CustomBinaryTree class is a custom implementation of a binary tree for easy visualization.
+ */
 public class CustomBinaryTree {
 
     private Node root;
@@ -26,8 +27,6 @@ public class CustomBinaryTree {
             current.left = addRecursive(current.left, value);
         } else if (cmp > 0) {
             current.right = addRecursive(current.right, value);
-        } else {
-            // value already exists, do nothing
         }
         return current;
     }

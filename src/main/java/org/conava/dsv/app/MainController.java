@@ -33,30 +33,33 @@ public class MainController {
     private HashTableModule hashTableModule;
     private GraphModule graphModule;
     private BinaryTreeModule binaryTreeModule;
-
-    private CommandManager commandManager;
-
-    private void loadModule(DataStructureModule module) {
-        moduleContainer.getChildren().clear();
-        moduleContainer.getChildren().add(module.getModuleUI());
-    }
+    private final CommandManager commandManager;
 
     public MainController() {
         commandManager = new CommandManager();
     }
 
-    @FXML
-    private void handleUndo() {
+    /**
+     * Load the module into the module container.
+     * @param module The module to load.
+     */
+    private void loadModule(DataStructureModule module) {
+        moduleContainer.getChildren().clear();
+        moduleContainer.getChildren().add(module.getModuleUI());
     }
 
-    @FXML
-    private void handleRedo() {
-    }
-
+    /**
+     * Set the undo action.
+     * @param handler The event handler for the undo action.
+     */
     public void setUndoAction(EventHandler<ActionEvent> handler) {
         undoButton.setOnAction(handler);
     }
 
+    /**
+     * Set the redo action.
+     * @param handler The event handler for the redo action.
+     */
     public void setRedoAction(EventHandler<ActionEvent> handler) {
         redoButton.setOnAction(handler);
     }
@@ -66,6 +69,10 @@ public class MainController {
         Platform.exit();
     }
 
+    /**
+     * Update the last command label.
+     * @param command The last command executed.
+     */
     public void updateLastCommand(String command) {
         lastCommandLabel.setText(command);
     }
@@ -92,7 +99,6 @@ public class MainController {
             configureGraph();
         }
         loadModule(graphModule);
-
     }
 
     private void configureGraph() {

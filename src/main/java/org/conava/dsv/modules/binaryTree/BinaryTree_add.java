@@ -2,6 +2,9 @@ package org.conava.dsv.modules.binaryTree;
 
 import org.conava.dsv.commands.Command;
 
+/**
+ * The BinaryTree_add class is a command to add a value to a binary tree.
+ */
 public class BinaryTree_add implements Command {
     private final CustomBinaryTree binaryTree;
     private final String value;
@@ -49,6 +52,6 @@ public class BinaryTree_add implements Command {
 
     @Override
     public String getString() {
-        return "BinaryTree_add(" + value + ")";
+        return "BinaryTree.add(" + value + ")";
     }
 }

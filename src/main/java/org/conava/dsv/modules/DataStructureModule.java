@@ -1,9 +1,14 @@
 package org.conava.dsv.modules;
 
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 
+/**
+ * The DataStructureModule interface is used to define a module that can be added to the Data Structure Visualizer.
+ */
 public interface DataStructureModule {
-    Pane getView();
+    /**
+     * Get the UI of the module.
+     * @return The UI of the module.
+     */
     Node getModuleUI();
 }

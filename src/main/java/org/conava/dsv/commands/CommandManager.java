@@ -2,10 +2,17 @@ package org.conava.dsv.commands;
 
 import java.util.Stack;
 
+/**
+ * The CommandManager class is responsible for managing the undo and redo stacks.
+ */
 public class CommandManager {
-    private Stack<Command> undoStack = new Stack<>();
-    private Stack<Command> redoStack = new Stack<>();
+    private final Stack<Command> undoStack = new Stack<>();
+    private final Stack<Command> redoStack = new Stack<>();
 
+    /**
+     * Execute a command.
+     * @param command The command to execute.
+     */
     public void executeCommand(Command command) {
         command.execute();
         undoStack.push(command);

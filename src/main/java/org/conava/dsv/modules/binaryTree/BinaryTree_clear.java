@@ -5,12 +5,14 @@ import org.conava.dsv.commands.Command;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The BinaryTree_clear class is a command to clear a binary tree.
+ */
 public class BinaryTree_clear implements Command {
     private final CustomBinaryTree binaryTree;
-    private String error = "";
     private String output = "";
     // Store all values to restore on undo
-    private List<String> oldValues = new ArrayList<>();
+    private final List<String> oldValues = new ArrayList<>();
 
     public BinaryTree_clear(CustomBinaryTree binaryTree) {
         this.binaryTree = binaryTree;
@@ -46,11 +48,11 @@ public class BinaryTree_clear implements Command {
 
     @Override
     public String getError() {
-        return error;
+        return "";
     }
 
     @Override
     public String getString() {
-        return "BinaryTree_clear()";
+        return "BinaryTree.clear()";
     }
 }

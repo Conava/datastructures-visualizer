@@ -1,7 +1,6 @@
 package org.conava.dsv.modules.binaryTree;
 
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -12,6 +11,10 @@ import org.conava.dsv.commands.Command;
 import org.conava.dsv.commands.CommandManager;
 import org.conava.dsv.modules.DataStructureModule;
 
+/**
+ * The BinaryTreeModule class is a module for visualizing a binary tree.
+ * It provides a UI for adding, removing, and checking if a value exists in the binary tree.
+ */
 public class BinaryTreeModule implements DataStructureModule {
     private BorderPane moduleRoot;
     private Label errorLabel;
@@ -118,11 +121,6 @@ public class BinaryTreeModule implements DataStructureModule {
     private void initializeDataStructure() {
         binaryTree = new CustomBinaryTree();
         updateVisualization();
-    }
-
-    @Override
-    public Pane getView() {
-        return null;
     }
 
     @Override

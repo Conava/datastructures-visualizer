@@ -4,7 +4,7 @@ import org.conava.dsv.commands.Command;
 
 public class HashTable_containsKey implements Command {
     private CustomHashTable hashTable;
-    private String key;
+    private final String key;
     private String error = "";
     private String output = "";
 
@@ -15,6 +15,10 @@ public class HashTable_containsKey implements Command {
 
     @Override
     public void execute() {
+        if (key == null || key.isEmpty()) {
+            error = "Key cannot be empty.";
+            return;
+        }
         boolean found = hashTable.containsKey(key);
         output = "containsKey(" + key + ") = " + found;
     }
@@ -36,6 +40,6 @@ public class HashTable_containsKey implements Command {
 
     @Override
     public String getString() {
-        return "HashTable_containsKey(" + key + ")";
+        return "hashTable.containsKey(" + key + ")";
     }
 }

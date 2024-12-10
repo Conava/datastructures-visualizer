@@ -34,6 +34,6 @@ public class Graph_edgeCount implements Command {
 
     @Override
     public String getString() {
-        return "Graph_edgeCount()";
+        return "graph.edgeCount()";
     }
 }

@@ -47,6 +47,6 @@ public class Graph_addVertex implements Command {
 
     @Override
     public String getString() {
-        return "Graph_addVertex(" + id + ")";
+        return "graph.addVertex(" + id + ")";
     }
 }

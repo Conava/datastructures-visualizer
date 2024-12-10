@@ -51,6 +51,6 @@ public class Graph_removeEdge implements Command {
 
     @Override
     public String getString() {
-        return "Graph_removeEdge(" + from + "," + to + ")";
+        return "graph.removeEdge(" + from + "," + to + ")";
     }
 }

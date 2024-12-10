@@ -3,8 +3,7 @@ package org.conava.dsv.modules.hashTable;
 import org.conava.dsv.commands.Command;
 
 public class HashTable_size implements Command {
-    private CustomHashTable hashTable;
-    private String error = "";
+    private final CustomHashTable hashTable;
     private String output = "";
 
     public HashTable_size(CustomHashTable hashTable) {
@@ -29,11 +28,11 @@ public class HashTable_size implements Command {
 
     @Override
     public String getError() {
-        return error;
+        return "";
     }
 
     @Override
     public String getString() {
-        return "HashTable_size()";
+        return "hashTable.size()";
     }
 }

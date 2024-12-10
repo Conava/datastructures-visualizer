@@ -2,9 +2,11 @@ package org.conava.dsv.modules.binaryTree;
 
 import org.conava.dsv.commands.Command;
 
+/**
+ * The BinaryTree_size class is a command to get the size of a binary tree.
+ */
 public class BinaryTree_size implements Command {
     private final CustomBinaryTree binaryTree;
-    private String error = "";
     private String output = "";
 
     public BinaryTree_size(CustomBinaryTree binaryTree) {
@@ -29,11 +31,11 @@ public class BinaryTree_size implements Command {
 
     @Override
     public String getError() {
-        return error;
+        return "";
     }
 
     @Override
     public String getString() {
-        return "BinaryTree_size()";
+        return "BinaryTree.size()";
     }
 }

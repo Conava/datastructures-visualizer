@@ -135,6 +135,5 @@ public class CustomHashTable {
         }
 
         buckets = newBuckets;
-        // Size remains the same
     }
 }

@@ -3,9 +3,9 @@ package org.conava.dsv.modules.hashTable;
 import org.conava.dsv.commands.Command;
 
 public class HashTable_add implements Command {
-    private CustomHashTable hashTable;
-    private String key;
-    private String value;
+    private final CustomHashTable hashTable;
+    private final String key;
+    private final String value;
     private String error = "";
     private String output = "";
     private String oldValue; // For undo
@@ -54,6 +54,6 @@ public class HashTable_add implements Command {
 
     @Override
     public String getString() {
-        return "HashTable_add(" + key + ", " + value + ")";
+        return "hashTable.add(" + key + ", " + value + ")";
     }
 }

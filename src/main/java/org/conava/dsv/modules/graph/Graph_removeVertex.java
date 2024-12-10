@@ -75,6 +75,6 @@ public class Graph_removeVertex implements Command {
 
     @Override
     public String getString() {
-        return "Graph_removeVertex(" + id + ")";
+        return "graph.removeVertex(" + id + ")";
     }
 }
